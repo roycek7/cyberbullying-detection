@@ -75,4 +75,4 @@ try:
 except Exception as e:
     print(f'{str(e).upper()}\nFollow command:\npython word_embeddings.py <file> --mandatory')
     print('Need to Download: https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz\n'
-          'and place it in UQ-ML-DATA7703/data/pretrained_word2vec/')
+          'and place it in cyberbullying-detection/data/pretrained_word2vec/')
