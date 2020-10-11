@@ -1,8 +1,8 @@
 # CYBERBULLYING DETECTION IN SOCIAL MEDIA 
 
-Based on Deep Learning Algorithm for Cyberbullying Detection ```https://pdfs.semanticscholar.org/d581/7c496cf950fd82ef6e05dfa4eaa6f27c24ec.pdf```.
+Based on Deep Learning Algorithm for Cyberbullying Detection https://pdfs.semanticscholar.org/d581/7c496cf950fd82ef6e05dfa4eaa6f27c24ec.pdf.
 
-Kaggle: ```https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/overview```
+Kaggle: https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/overview
 
 # Convolutional Neural Network
 ### Steps
