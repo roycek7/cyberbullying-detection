@@ -16,7 +16,7 @@ and place it in ```cyberbullying-detection/data/pretrained_word2vec/``` or your 
 options = {1: 'corpus', 2: 'google_pre_trained'}
 ```
 
-To visualise the embeddings run ```src/visualisations/word_embeddings.py``` with the numerical option ( 1 | 2 ) as an argument.
+To visualise the embeddings run ```src/visualisations/word_embeddings.py``` with the numerical option ``` 1 | 2 ``` as an argument.
 
 Create weights, test and training sequence of the embedding matrix with the program ```src/pre_process/tokenizer_cnn.py```. The output will be stored as pickle files.
 
