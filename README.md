@@ -7,12 +7,14 @@ Kaggle: https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/o
 # Convolutional Neural Network
 ### Steps
 
-Place train.csv and test.csv in cyberbullying-detection/data/interim/
+Place ```train.csv``` and ```test.csv``` in ```cyberbullying-detection/data/interim/```
 
 Download google's pre-trained word embeddings from ```https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz```
 and place it in cyberbullying-detection/data/pretrained_word2vec/ or your create own word embedding from the corpus with file src/pre_process/create_embeddings.py
 
-```options = {1: 'corpus', 2: 'google_pre_trained'}```
+```
+options = {1: 'corpus', 2: 'google_pre_trained'}
+```
 
 To visualise the embeddings run ```src/visualisations/word_embeddings.py``` with the numerical option ( 1 | 2 ) as an argument.
 
