@@ -10,7 +10,7 @@ Kaggle: https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/o
 Place ```train.csv``` and ```test.csv``` in ```cyberbullying-detection/data/interim/```
 
 Download google's pre-trained word embeddings from https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz.
-and place it in ```cyberbullying-detection/data/pretrained_word2vec/``` or your create own word embedding from the corpus with file ```src/pre_process/create_embeddings.py```.
+and place it in ```cyberbullying-detection/data/pretrained_word2vec/``` or create own word embedding from the corpus with file ```src/pre_process/create_embeddings.py```.
 
 ```
 options = {1: 'corpus', 2: 'google_pre_trained'}
