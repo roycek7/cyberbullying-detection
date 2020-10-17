@@ -6,3 +6,6 @@ pickle
 matplotlib
 nltk
 sklearn
+pydot
+pydotplus
+graphviz
