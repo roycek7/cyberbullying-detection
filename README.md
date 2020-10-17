@@ -29,4 +29,4 @@ To run the deep learning model, run ```src/models/convolutional_neural_network.p
 
 To predict a line of string, run ```src/models/cnn_predict.py```, specify option and the text as input argument. Outputs prediction on the labels.
 
-To get the confusion matrix and classification report run ```src/models/test_accuracy```, specify option of the prediction. Output a classification report along with confusion matrix.
+To get the confusion matrix and classification report run ```src/models/test_accuracy.py```, specify option of the prediction. Output a classification report along with confusion matrix.
