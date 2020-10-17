@@ -7,7 +7,7 @@ Kaggle: https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/o
 # Convolutional Neural Network
 ### Steps
 
-Place ```train.csv``` and ```test.csv``` in ```cyberbullying-detection/data/interim/```
+Place ```train.csv```,  ```test.csv``` and ```test_labels.csv``` in ```cyberbullying-detection/data/interim/```
 
 Download google's pre-trained word embeddings from https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz.
 and place it in ```cyberbullying-detection/data/pretrained_word2vec/``` or create own word embedding from the corpus with file ```src/pre_process/create_embeddings.py```.
@@ -23,3 +23,5 @@ Create weights, test and training sequence of the embedding matrix with the prog
 To run the deep learning model, run ```src/models/convolutional_neural_network.py```, specify the option for the weights to be trained on in the Embedding layer. The program saves the prediction, model as csv and h5 file respectively.
 
 To predict a line of string, run ```src/models/cnn_predict.py```, specify option and the text as input argument. Outputs prediction on the labels.
+
+To get the confusion matrix and classification report run ```src/models/test_accuracy```, specify option of the prediction. Output a classification report along with confusion matrix.

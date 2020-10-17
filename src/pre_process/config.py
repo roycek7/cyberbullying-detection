@@ -7,6 +7,8 @@ from pre_processing import file_path
 
 CORPUS = 1
 PRE_TRAINED = 2
+
+# CNN HYPER-PARAMETERS
 EPOCH = 100
 DIMENSION = 300
 MAX_LEN = 200
@@ -16,6 +18,7 @@ MAX_WORDS = 300000
 DROPOUT_RATE = 0.2
 POOL_SIZE = 2
 BATCH_SIZE = 256
+NEURONS = 32
 
 word2vec_path = file_path('data', "pretrained_word2vec", "GoogleNews-vectors-negative300.bin")
 top_words = 10
