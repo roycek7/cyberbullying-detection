@@ -1,11 +1,12 @@
 from __future__ import absolute_import
 
 import pickle
+import sys
 
 import gensim
 import numpy as np
-from config import DIMENSION, MAX_LEN, PICKLE_PATH, MAX_WORDS, word2vec_path
-from pre_processing import read_dataset, file_path, clean_dataset
+from config import DIMENSION, MAX_LEN, PICKLE_PATH, MAX_WORDS, word2vec_path, CORPUS, options, PRE_TRAINED
+from pre_processing import read_dataset, clean_dataset
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.text import Tokenizer
 
@@ -51,28 +52,46 @@ def read(file):
         return pickle.load(f)
 
 
-try:
-    corpus_embedding_matrix = get_word_embedding_data(clean_dataset(read_dataset('train.csv')),
-                                                      clean_dataset(read_dataset('test.csv')),
-                                                      'comment_text', read(f'{PICKLE_PATH}/corpus_embedding.pkl'))[0]
+def run(argv):
+    try:
+        if len(argv) != CORPUS:
+            raise Exception
+        else:
+            if isinstance(int(argv[0]), int):
+                choice = int(argv[0])
+                train_df, test_df = clean_dataset(read_dataset('train.csv')), clean_dataset(read_dataset('test.csv'))
+                if choice == CORPUS:
+                    corpus_embedding_matrix = get_word_embedding_data(train_df,
+                                                                      test_df,
+                                                                      'comment_text',
+                                                                      read(f'{PICKLE_PATH}/corpus_embedding.pkl'))[0]
 
-    store(f'{PICKLE_PATH}/corpus_word_embedding', corpus_embedding_matrix)
+                    store(f'{PICKLE_PATH}/corpus_word_embedding', corpus_embedding_matrix)
+                elif choice == PRE_TRAINED:
+                    # NEED PRE-TRAINED WORD EMBEDDINGS FOR EMBEDDING LAYER
+                    word_embedding_matrix, training_cnn_data = \
+                        get_word_embedding_data(train_df,
+                                                test_df,
+                                                'comment_text',
+                                                gensim.models.KeyedVectors.load_word2vec_format(
+                                                    word2vec_path, binary=True))
 
-    # NEED PRE-TRAINED WORD EMBEDDINGS FOR EMBEDDING LAYER
-    word_embedding_matrix, training_cnn_data = get_word_embedding_data(clean_dataset(read_dataset('train.csv')),
-                                                                       clean_dataset(read_dataset('test.csv')),
-                                                                       'comment_text',
-                                                                       gensim.models.KeyedVectors.load_word2vec_format(
-                                                                           word2vec_path, binary=True))
+                    store(f'{PICKLE_PATH}/pretrained_word_embedding', word_embedding_matrix), store(
+                        f'{PICKLE_PATH}/cnn_sequence',
+                        training_cnn_data)
 
-    store(f'{PICKLE_PATH}/pretrained_word_embedding', word_embedding_matrix), store(f'{PICKLE_PATH}/cnn_sequence',
-                                                                                    training_cnn_data)
+                test_cnn = get_word_embedding_data(train_df,
+                                                   test_df, 'comment_text', None,
+                                                   train=False)[1]
+                store(f'{PICKLE_PATH}/test_cnn_sequence', test_cnn)
+    except Exception as e:
+        print(f'{str(e).upper()}\nFollow command:\npython word_embeddings.py <file> --mandatory'
+              f'<choice of embedding> --mandatory')
+        print(f'{options}')
+        if argv[0] == PRE_TRAINED:
+            print('Need to Download: https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz\n'
+                  'and place it in UQ-ML-DATA7703/data/pretrained_word2vec/')
 
-    test_cnn = get_word_embedding_data(clean_dataset(read_dataset('train.csv')),
-                                       clean_dataset(read_dataset('test.csv')), 'comment_text', None,
-                                       train=False)[1]
-    store(f'{PICKLE_PATH}/test_cnn_sequence', test_cnn)
-except Exception as e:
-    print(f'{str(e).upper()}\nFollow command:\npython word_embeddings.py <file> --mandatory')
-    print('Need to Download: https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz\n'
-          'and place it in UQ-ML-DATA7703/data/pretrained_word2vec/')
+
+if __name__ == '__main__':
+    run(sys.argv[1:])

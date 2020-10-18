@@ -23,7 +23,7 @@ options = {1: 'corpus', 2: 'google_pre_trained'}
 
 To visualise the embeddings run ```src/visualisations/word_embeddings.py``` with the numerical option ``` 1 | 2 ``` as an argument.
 
-Create weights, test and training sequence of the embedding matrix with the program ```src/pre_process/tokenizer_cnn.py```. The output will be stored as pickle files.
+Create weights, test and training sequence of the embedding matrix with the program ```src/pre_process/tokenizer_cnn.py``` with the specified option. The output will be stored as pickle files.
 
 To run the deep learning model, run ```src/models/convolutional_neural_network.py```, specify the option for the weights to be trained on in the Embedding layer. The program saves the prediction, model as csv and h5 file respectively.
 
