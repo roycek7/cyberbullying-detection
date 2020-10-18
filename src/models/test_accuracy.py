@@ -22,7 +22,7 @@ def run(argv):
                 choice = int(argv[0])
                 test_labels = read_dataset('test_labels.csv')
 
-                prediction = pretrained if choice == CORPUS else corpus
+                prediction = pretrained if choice != CORPUS else corpus
 
                 y_pred = pd.read_csv(f'{PICKLE_PATH}/{prediction}_prediction.csv')
                 y_pred = y_pred.round()
